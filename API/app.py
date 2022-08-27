@@ -6,7 +6,7 @@ Created on Sun Aug 21 16:02:46 2022
 @author: cyril
 """
 
-# 1. Library imports
+# 1. Import des librairies
 
 import uvicorn
 from fastapi import FastAPI
