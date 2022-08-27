@@ -13,6 +13,7 @@ import matplotlib as plt
 import requests
 import shap
 import pickle
+import altair as alt
 
 
 # Liste des ID de clients
@@ -95,7 +96,29 @@ def main():
                 st.error(
                 'Décision concernant le crédit : {}'.format(pred.get("avis"))) 
 
+    st.text("__________________________________________________________________________________")
 
+    with st.container():
+        st.title('Portefeuille') 
+        
+        col3, col4 = st.columns(2)
+        
+        with col3:
+            st.text("Graphique bivarié")
+            choix1=df.columns.values.tolist()
+            var_sel = st.selectbox("Choisissez une variable pour voir sa distribution", choix1)
+            st.bar_chart(df[var_sel].value_counts(ascending=True))
+            
+        with col4:
+            st.text("Features importance globales")
+            st.image('imp_val.png')
+
+    choix2=df.columns.values.tolist()
+    var_sel2 = st.selectbox("Choisissez une variable pour voir sa relation avec la classe des clients", choix2)
+
+    c = alt.Chart(df).mark_circle().encode(
+         x=var_sel2, y='AMT_CREDIT',color="CODE_GENDER")
+    st.altair_chart(c, use_container_width=True)      
 
 if __name__ == '__main__':
     main()
