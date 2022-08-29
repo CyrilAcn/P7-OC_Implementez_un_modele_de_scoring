@@ -59,9 +59,17 @@ def predict_customer(id:int):
             return{"proba" : prediction[0,1], "avis" : "Avis favorable"}
 
 
+# 5. Fonction de prédiction, réalisation via les données au format
+#   JSON and retourne the probabilité d'appartenance aux deux classes
+#   ainsi qu'un avis
 
+#@app.post('/featimp')
+#def predict_customer(id:int):
 
-if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8000)
+    #if id in list_id:
+            #return{"proba" : prediction[0,1], "avis" : "Avis favorable"}
+
+#if __name__ == '__main__':
+    #uvicorn.run(app, host='127.0.0.1', port=8000)
 
 #uvicorn app:app --reload
