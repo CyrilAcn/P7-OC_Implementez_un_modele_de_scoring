@@ -19,7 +19,7 @@ import time
 
 
 # Définition des path
-path ='https://cyrilaciendashboard.herokuapp.com/'
+path ='https://cyrilacienapi.herokuapp.com/'
 APP_PRED = 'predict'
 
 # Liste des ID de clients
