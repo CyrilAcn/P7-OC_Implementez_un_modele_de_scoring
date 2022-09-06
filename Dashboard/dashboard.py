@@ -113,7 +113,7 @@ def main():
                 #st.write()
                 #st.write(
                 #        'Retour: {}'.format(feat.get("feature")))
-                st.image('/tmp/waterfall.png', width=(600))
+                st.image('waterfall.png', width=(600))
      
     
     st.text("__________________________________________________________________________________")
@@ -129,7 +129,7 @@ def main():
             
         with col4:
             st.text("Features importance globales")
-            st.image('/tmp/imp_val.png',width=(600))
+            st.image('imp_val.png',width=(600))
 
     choix2 = df.columns.values.tolist()
     var_sel2 = st.selectbox("Choisissez une variable pour voir sa relation avec la classe des clients", choix2)
