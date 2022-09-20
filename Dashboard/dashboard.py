@@ -96,14 +96,14 @@ def main():
         col1, col2 = st.columns(2)
 
         with col1:
-            st.text('Valeurs des variables importantes')
+            st.markdown("**Valeurs des variables importantes**")
             #predict_btn = st.button('Prédire')
             if predict_btn:
                 df2= df.T
                 st.dataframe(df2[customer_id],height=350)
 
         with col2:
-            st.text('Variables importantes pour la prédiction')
+            st.markdown("**Variables importantes pour la prédiction**")
             if predict_btn:
                 shap.plots._waterfall.waterfall_legacy(exp.expected_value[1],
                                                        shap_values[1][pos,:], 
@@ -119,23 +119,31 @@ def main():
     st.text("__________________________________________________________________________________")
 
     with st.container():
-        st.title('Portefeuille') 
+        st.title("Portefeuille") 
         
         col3, col4 = st.columns(2)
 
         with col3:
-            st.text("Distribution des risques portefeuille")
+            st.markdown("**Distribution des risques portefeuille**")
             st.bar_chart(pred_prob["Taux de risque"].value_counts(ascending=True),width=150,height=450)
             
         with col4:
-            st.text("Features importance globales")
+            st.markdown("**Features importance globales**")
             st.image('imp_val.png',width=(600))
 
+    st.markdown("**Influence des variables sur le taux de risque**")
     choix2 = df.columns.values.tolist()
-    var_sel2 = st.selectbox("Choisissez une variable pour voir sa relation avec la classe des clients", choix2)
+    var_sel2 = st.selectbox("Choisissez une variable pour voir sa relation avec le taux de risque", choix2)
     c = alt.Chart(scatterplot).mark_circle().encode(
          x=var_sel2, y='Taux de risque')
-    st.altair_chart(c, use_container_width=True)            
+    st.altair_chart(c, use_container_width=True)      
+
+    st.markdown("**Analyse bivariée: diagramme de dispersion entre deux variables**")
+    var_sel3 = st.selectbox("Choisissez une 1ère variable", choix2)
+    var_sel4 = st.selectbox("Choisissez une 2ème variable", choix2)    
+    c2 = alt.Chart(scatterplot).mark_circle().encode(
+         x=var_sel3, y=var_sel4)
+    st.altair_chart(c2, use_container_width=True)        
 
 
 if __name__ == '__main__':
